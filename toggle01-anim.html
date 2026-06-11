@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mudlark - SVG to UI Framework — anim01</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a1a;color:#e0e0e0;font-family:system-ui,sans-serif;
+     display:flex;flex-direction:column;align-items:center;justify-content:center;
+     min-height:100vh;padding:40px 20px;gap:32px}
+.card{background:#242424;border:1px solid #333;border-radius:0;padding:24px;width:100%;max-width:540px}
+.card h2{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.preview{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.controls{display:flex;flex-direction:column}
+.badge{font-size:10px;color:#444;text-align:center;margin-top:16px}
+input[type=range]{accent-color:#60CDFF;cursor:pointer;width:100%}
+.knob-col{display:flex;flex-direction:column;align-items:center;gap:6px}
+.knob-label{font-size:10px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.06em}
+.knob-value{font-family:ui-monospace,"Cascadia Code",monospace;font-size:13px;color:#60CDFF;min-width:44px;text-align:center}
+.ctrl-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ctrl-row label{font-size:12px;min-width:100px;color:#aaa;flex-shrink:0}
+.ctrl-readout{font-family:ui-monospace,"Cascadia Code",monospace;font-size:12px;min-width:44px;text-align:right;color:#60CDFF}
+</style>
+</head>
+<body>
+<svg width="113" height="85" viewBox="0 0 113 85" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100.818 3.24123C99.1965 -0.611173 81.2824 -4.86079 71.7134 15.1242C71.7134 15.1242 64.33 19.5458 58.0037 24.6816C51.6775 29.8175 44.9584 38.083 44.9584 38.083L1.22104 64.3375L3.41291 65.0999L9.22787 63.4045L0 68.862L3.02258 69.9154L34.3293 60.5854C34.3293 60.5854 48.4513 62.5216 59.4607 62.5317C58.9403 63.575 58.4199 64.6083 57.9094 65.6517C57.389 66.7051 61.9165 78.5186 63.5579 83.5247C60.7955 83.9461 59.6737 83.6127 56.9213 84.034C55.9305 84.1845 54.6166 85.1344 55.5874 84.9839H64.5789H73.0223C74.0032 85.1344 71.9511 84.1845 70.9602 84.034C67.1314 84.034 68.127 83.7015 65.3447 83.2701C65.4748 83.7015 65.2146 82.8387 65.3447 83.2701C64.8542 81.5947 63.7144 77.57 63.2239 75.8846C62.3032 72.7545 61.3824 69.6144 60.4516 66.4844C60.4416 66.4643 60.4416 66.4442 60.4316 66.4342C60.7619 65.762 71.3309 60.9365 71.3309 60.9365C71.3309 60.9365 71.3309 60.9365 71.3209 60.9365C109.704 47.092 89.4989 16.0105 97.5858 11.0847C100.134 6.43876 113.673 5.28923 112.974 4.80728C109.036 2.09235 100.818 3.24123 100.818 3.24123Z" fill="black"/></svg>
+<div class="card">
+<h2>Preview — 3 instances</h2>
+<div class="preview">
+<div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap">
+  <div class="knob-col">
+    <div class="knob-label">Instance 1</div>
+    <div id="mount-1"></div>
+    <div class="knob-value" id="val-1-anim01">0</div>
+  </div>
+  <div class="knob-col">
+    <div class="knob-label">Instance 2</div>
+    <div id="mount-2"></div>
+    <div class="knob-value" id="val-2-anim01">0</div>
+  </div>
+  <div class="knob-col">
+    <div class="knob-label">Instance 3</div>
+    <div id="mount-3"></div>
+    <div class="knob-value" id="val-3-anim01">0</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="card"><h2>Controls</h2><div class="controls"><div class="ctrl-row"><label>Inst 1 · anim01</label><input type="range" min="0" max="1" step="0.01" value="0" style="flex:1" id="slider-1-anim01"/><span class="ctrl-readout" id="readout-1-anim01">0</span></div>
+      <div class="ctrl-row"><label>Inst 2 · anim01</label><input type="range" min="0" max="1" step="0.01" value="0" style="flex:1" id="slider-2-anim01"/><span class="ctrl-readout" id="readout-2-anim01">0</span></div>
+      <div class="ctrl-row"><label>Inst 3 · anim01</label><input type="range" min="0" max="1" step="0.01" value="0" style="flex:1" id="slider-3-anim01"/><span class="ctrl-readout" id="readout-3-anim01">0</span></div></div></div>
+
+<div class="badge">Mudlark - SVG to UI Framework v0.5.6 &nbsp;&middot;&nbsp; Multi-instance / Mapped</div>
+<script>
+// ============================================================
+// Mudlark - SVG to UI Framework v0.5.6 — Generated Export
+// Delivery: Multi-instance (JS factory)
+// Setter:   Mapped (input domain → output range)
+//
+// API:
+//    setAnim01(value)  range: 0–1  →  #tog_track_1[fill], #tog_thumb_1[cx], #tog_thumb_1[fill]
+//
+// State:
+//    .getValue('anim01')  .getMin('anim01')  .getMax('anim01')  .getState()
+
+// ============================================================
+
+// ── SVG Template ─────────────────────────────────────────────────────
+const ANIM01_SVG =
+`<svg xmlns="http://www.w3.org/2000/svg" width="80" height="40" viewBox="0 0 80 40" fill="none"><svg id="svg_1" x="0.0" y="0.0" width="80.0" height="40.0" viewBox="0.0 0.0 80.0 40.0" overflow="visible" style="cursor: pointer;"><rect id="tog_track_1" x="0" y="0" width="80" height="40" rx="20" fill="#555555" style="cursor: pointer;"/><circle id="tog_thumb_1" cx="20" cy="20" r="16" fill="#969696" style="cursor: pointer;"/></svg></svg>`;
+
+// ── Binding Definitions ───────────────────────────────────────────────
+const ANIM01_BINDINGS = {
+  bind_1: {
+    label: 'anim01',
+    fn: 'setAnim01',
+    input: { min: 0, max: 1, step: 0.01 },
+    targets: [
+      { selector: '#tog_track_1', attr: 'fill', interp: 'linear', outMin: 0, outMax: 1, params: {}, colorFrom: '#555555', colorTo: '#2875f0' },
+      { selector: '#tog_thumb_1', attr: 'cx', interp: 'linear', outMin: 20, outMax: 60, params: {} },
+      { selector: '#tog_thumb_1', attr: 'fill', interp: 'linear', outMin: 0, outMax: 1, params: {}, colorFrom: '#969696', colorTo: '#e0e0e0' }
+    ]
+  }
+};
+
+// ── Factory ───────────────────────────────────────────────────────────
+function createAnim01(container) {
+
+  // Stamp SVG — once
+  container.innerHTML = ANIM01_SVG;
+  const root = container.querySelector('svg');
+
+  // Resolve all target element refs — once at creation time
+  const _r = {};
+  _r['tgt_1'] = root.querySelector('#tog_track_1');
+  _r['tgt_2'] = root.querySelector('#tog_thumb_1');
+  _r['tgt_3'] = root.querySelector('#tog_thumb_1');
+
+  // ── Bind state (min/max/step written once; val updated by each setter) ──
+  root.setAttribute('data-state', JSON.stringify({
+    "anim01": {val:0,min:0,max:1,step:0.01}
+  }));
+
+  // ── onChange callback — set externally for UI sync ──────────────
+  let _onChange = null;
+
+  function _colorLerp(a,b,t){
+    function _p(c){
+      c=c.trim();
+      if(c.startsWith('#')){let h=c.slice(1);if(h.length===3)h=h.split('').map(x=>x+x).join('');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+      const m=c.match(/rgba?\((\d+),(\d+),(\d+)/);return m?[+m[1],+m[2],+m[3]]:[0,0,0];
+    }
+    const[ar,ag,ab]=_p(a),[br,bg,bb]=_p(b);
+    const h=v=>Math.round(v).toString(16).padStart(2,'0');
+    return'#'+h(ar+(br-ar)*t)+h(ag+(bg-ag)*t)+h(ab+(bb-ab)*t);
+  }
+
+  // ── Named setters (input range per bind) ─────────────────────────
+    function setAnim01(value) {
+      const _t = Math.max(0, Math.min(1, (value - 0) / 1));
+    if(_r['tgt_1']) _r['tgt_1'].setAttribute('fill', _colorLerp('#555555','#2875f0',_t));
+    if(_r['tgt_2']) _r['tgt_2'].setAttribute('cx', +(20+_t*40).toFixed(4));
+    if(_r['tgt_3']) _r['tgt_3'].setAttribute('fill', _colorLerp('#969696','#e0e0e0',_t));
+      (function(){ var _st={};try{_st=JSON.parse(root.getAttribute('data-state')||'{}');}catch{} if(_st["anim01"])_st["anim01"].val=value; root.setAttribute('data-state',JSON.stringify(_st)); })();
+      if(_onChange) _onChange("anim01", value);
+    }
+
+  // ── Convenience: drive all binds with one value ───────────────────
+  function setAll(value) {
+      setAnim01(value);
+  }
+
+  // ── Event reactions ──
+  // Bind transition helper
+  var _bindAnimations = {};
+  function _transitionBinding(bindId, startValue, targetValue, duration){
+    if(_bindAnimations[bindId]) cancelAnimationFrame(_bindAnimations[bindId]);
+    var bind = {id: bindId};
+    if(bindId === "bind_1"){ bind.setter = setAnim01; }
+    if(!bind.setter) return;
+    var startTime = performance.now();
+    function step(now){
+      var elapsed = now - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var value = startValue + (targetValue - startValue) * progress;
+      bind.setter(value);
+      if(progress < 1){
+        _bindAnimations[bindId] = requestAnimationFrame(step);
+      } else {
+        delete _bindAnimations[bindId];
+      }
+    }
+    _bindAnimations[bindId] = requestAnimationFrame(step);
+  }
+
+  var _st_evt_2={};
+  root.querySelectorAll("#svg_1").forEach(function(_el){
+    _el.style.cursor="pointer";
+    _el.addEventListener("click",function(){
+      if(!_st_evt_2['evt_2_0'] || _st_evt_2['evt_2_0'] === 'B'){
+        _st_evt_2['evt_2_0'] = 'A';
+        setAnim01(0);
+        _transitionBinding("bind_1", 0, 1, 150);
+      } else {
+        _st_evt_2['evt_2_0'] = 'B';
+        setAnim01(1);
+        _transitionBinding("bind_1", 1, 0, 150);
+      }
+    });
+  });
+
+  // ── Initialize to zero state ──────────────────────────────────────
+  setAll(0);
+
+  return {
+    setAnim01,
+    getState: () => { try{ return JSON.parse(root.getAttribute('data-state')||'{}'); }catch{ return {}; } },
+    getValue_anim01: () => { try{ return JSON.parse(root.getAttribute('data-state')||'{}')["anim01"]?.val??null; }catch{ return null; } },
+    getMin_anim01:   () => { try{ return JSON.parse(root.getAttribute('data-state')||'{}')["anim01"]?.min??null; }catch{ return null; } },
+    getMax_anim01:   () => { try{ return JSON.parse(root.getAttribute('data-state')||'{}')["anim01"]?.max??null; }catch{ return null; } },
+    _root: root,
+    setAll,
+    reset: () => setAll(0),
+    set onChange(fn){ _onChange=fn; }
+  };
+}
+
+// ── Usage ─────────────────────────────────────────────────────────────
+// const meter1 = createAnim01(document.getElementById('mount-1'));
+// const meter2 = createAnim01(document.getElementById('mount-2'));
+// meter1.setAnim01(75);
+// meter2.setAll(40);
+const instances = [];
+for(var _i=1;_i<=3;_i++){
+  (function(i){
+    var inst = createAnim01(document.getElementById('mount-'+i));
+    // Wire onChange: update slider + value readouts bidirectionally
+    inst.onChange = function(key, val){
+      var display = (+val).toFixed(2);
+      var slider = document.getElementById('slider-'+i+'-'+key);
+      var readout = document.getElementById('readout-'+i+'-'+key);
+      var valEl = document.getElementById('val-'+i+'-'+key);
+      if(slider) slider.value = val;
+      if(readout) readout.textContent = display;
+      if(valEl) valEl.textContent = display;
+    };
+    // Wire sliders → setters
+    document.getElementById('slider-'+i+'-'+'anim01')?.addEventListener('input', function(){ inst.setAnim01(+this.value); });
+    instances.push(inst);
+  })(_i);
+}
+
+</script>
+</body>
+</html>

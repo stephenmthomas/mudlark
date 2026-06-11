@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mudlark - SVG to UI Framework — Export</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a1a;color:#e0e0e0;font-family:system-ui,sans-serif;
+     display:flex;flex-direction:column;align-items:center;justify-content:center;
+     min-height:100vh;padding:40px 20px;gap:32px}
+.card{background:#242424;border:1px solid #333;border-radius:0;padding:24px;width:100%;max-width:540px}
+.card h2{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.preview{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+.controls{display:flex;flex-direction:column}
+.badge{font-size:10px;color:#444;text-align:center;margin-top:16px}
+input[type=range]{accent-color:#60CDFF;cursor:pointer;width:100%}
+
+</style>
+</head>
+<body>
+<svg width="113" height="85" viewBox="0 0 113 85" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100.818 3.24123C99.1965 -0.611173 81.2824 -4.86079 71.7134 15.1242C71.7134 15.1242 64.33 19.5458 58.0037 24.6816C51.6775 29.8175 44.9584 38.083 44.9584 38.083L1.22104 64.3375L3.41291 65.0999L9.22787 63.4045L0 68.862L3.02258 69.9154L34.3293 60.5854C34.3293 60.5854 48.4513 62.5216 59.4607 62.5317C58.9403 63.575 58.4199 64.6083 57.9094 65.6517C57.389 66.7051 61.9165 78.5186 63.5579 83.5247C60.7955 83.9461 59.6737 83.6127 56.9213 84.034C55.9305 84.1845 54.6166 85.1344 55.5874 84.9839H64.5789H73.0223C74.0032 85.1344 71.9511 84.1845 70.9602 84.034C67.1314 84.034 68.127 83.7015 65.3447 83.2701C65.4748 83.7015 65.2146 82.8387 65.3447 83.2701C64.8542 81.5947 63.7144 77.57 63.2239 75.8846C62.3032 72.7545 61.3824 69.6144 60.4516 66.4844C60.4416 66.4643 60.4416 66.4442 60.4316 66.4342C60.7619 65.762 71.3309 60.9365 71.3309 60.9365C71.3309 60.9365 71.3309 60.9365 71.3209 60.9365C109.704 47.092 89.4989 16.0105 97.5858 11.0847C100.134 6.43876 113.673 5.28923 112.974 4.80728C109.036 2.09235 100.818 3.24123 100.818 3.24123Z" fill="black"/></svg>
+<div class="card">
+<h2>Preview — 3 instances</h2>
+<div class="preview">
+<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div id="mount-1"></div><div id="mount-2"></div><div id="mount-3"></div></div>
+</div>
+</div>
+
+
+<div class="badge">Mudlark - SVG to UI Framework v0.5.4 &nbsp;&middot;&nbsp; Multi-instance / Mapped</div>
+<script>
+// ============================================================
+// Mudlark - SVG to UI Framework v0.5.4 — Generated Export
+// Delivery: Multi-instance (JS factory)
+// Setter:   Mapped (input domain → output range)
+//
+// API:
+//   (no bindings)
+
+
+// ============================================================
+
+// ── SVG Template ─────────────────────────────────────────────────────
+const COMPONENT_SVG =
+`<svg xmlns="http://www.w3.org/2000/svg" width="80" height="40" viewBox="0 0 80 40" fill="none"><svg id="svg_1" x="0.0" y="0.0" width="80.0" height="40.0" viewBox="0.0 0.0 80.0 40.0" overflow="visible" style="cursor: pointer;"><rect id="tog_track_1" x="0" y="0" width="80" height="40" rx="20" fill="#555" style="cursor: pointer;"/><circle id="tog_thumb_1" cx="20" cy="20" r="16" fill="#969696" style="cursor: pointer;"/></svg></svg>`;
+
+// ── Binding Definitions ───────────────────────────────────────────────
+const COMPONENT_BINDINGS = {
+
+};
+
+// ── Factory ───────────────────────────────────────────────────────────
+function createComponent(container) {
+
+  // Stamp SVG — once
+  container.innerHTML = COMPONENT_SVG;
+  const root = container.querySelector('svg');
+
+  // Resolve all target element refs — once at creation time
+  const _r = {};
+
+
+  // ── Bind state (min/max/step written once; val updated by each setter) ──
+
+
+  // ── onChange callback — set externally for UI sync ──────────────
+  let _onChange = null;
+
+
+  // ── Named setters (input range per bind) ─────────────────────────
+
+
+  // ── Convenience: drive all binds with one value ───────────────────
+  function setAll(value) {
+
+  }
+
+  // ── Event reactions ──
+  var _st_evt_1={};
+  root.querySelectorAll("#svg_1").forEach(function(_el){
+    _el.style.cursor="pointer";
+    _el.addEventListener("click",function(){
+      if(!_st_evt_1['evt_1_0'] || _st_evt_1['evt_1_0'] === "~svg_1::off"){
+        _st_evt_1['evt_1_0'] = "~svg_1::on";
+        { var _t=root.querySelector("#tog_track_1");if(_t){
+          _t.setAttribute("x","0");
+          _t.setAttribute("y","0");
+          _t.setAttribute("width","80");
+          _t.setAttribute("height","40");
+          _t.setAttribute("rx","20");
+          _t.setAttribute("fill","#2875f0");
+        } }
+        { var _t=root.querySelector("#tog_thumb_1");if(_t){
+          _t.setAttribute("cx","60");
+          _t.setAttribute("cy","20");
+          _t.setAttribute("r","16");
+          _t.setAttribute("fill","#e0e0e0");
+        } }
+      } else {
+        _st_evt_1['evt_1_0'] = "~svg_1::off";
+        { var _t=root.querySelector("#tog_track_1");if(_t){
+          _t.setAttribute("x","0");
+          _t.setAttribute("y","0");
+          _t.setAttribute("width","80");
+          _t.setAttribute("height","40");
+          _t.setAttribute("rx","20");
+          _t.setAttribute("fill","#555");
+        } }
+        { var _t=root.querySelector("#tog_thumb_1");if(_t){
+          _t.setAttribute("cx","20");
+          _t.setAttribute("cy","20");
+          _t.setAttribute("r","16");
+          _t.setAttribute("fill","#969696");
+        } }
+      }
+    });
+  });
+
+  // ── Initialize to zero state ──────────────────────────────────────
+  setAll(0);
+
+  return { _root: root, setAll, reset: () => setAll(0), set onChange(fn){ _onChange=fn; } };
+}
+
+// ── Usage ─────────────────────────────────────────────────────────────
+// const meter1 = createComponent(document.getElementById('mount-1'));
+// const meter2 = createComponent(document.getElementById('mount-2'));
+// meter1.setValue(75);
+// meter2.setAll(40);
+const instances = ['mount-1','mount-2','mount-3'].map(function(id){ return createComponent(document.getElementById(id)); });
+
+</script>
+</body>
+</html>
